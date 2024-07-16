@@ -27,6 +27,7 @@ export const ShowTask = () => {
     if (context) {
       loadTask((context as any)?.user?._id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 console.log('taskData',taskData);
 
@@ -52,8 +53,8 @@ async function deleteShowTaskFromParent(taskId:any){
       <div className="col-span-6 col-start-4" >
         <h1 className="text-3xl text-center font-bold mb-6" >your task ({taskData.length})</h1>
         {
-            taskData.map( (task:any) =>{
-                return <Task task={task} deleteShowTaskFromParent={deleteShowTaskFromParent} />
+            taskData.map( (task:any,inx:number) =>{
+                return <Task task={task} key={inx} deleteShowTaskFromParent={deleteShowTaskFromParent} />
             })
         }
       </div>
